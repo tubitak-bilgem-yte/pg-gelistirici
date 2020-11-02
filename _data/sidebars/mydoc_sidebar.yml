@@ -32,6 +32,9 @@ entries:
     output: web, pdf
     folderitems:
 
+    - title: PostgreSQL'e Özgü Veri ve Operatör Tipleri
+      url: /mydoc_veri_operator_tipleri.html
+      output: web, pdf
 
   - title: Fonksiyon ve Operatör Tipleri
     output: web, pdf
