@@ -572,9 +572,9 @@ Sistem tarafından kullanılan bir başka id tipi de transaction id’si olarak 
 
 ``cmax``: Satır eğer DELETE transaction’ı ile geldiyse komut ID’si (command identifier).
 
-Son sistem id tipi ise tablo satırları için kullanılan tuple (veya row) identifier yani TID’dir. Bu sistem kolonu olan CTID’nin veri tipidir. Bir TID, blok numarası ve bloktaki satır indeksinden oluşan bir değer çiftidir. TID, bir satırın, tablodaki fiziksel konumunu tanımlamak için kullanılır. 
+Son sistem id tipi ise tablo satırları için kullanılan tuple (veya row) identifier yani TID’dir. Bu sistem kolonu olan CTID’nin veri tipidir. Bir TID, blok numarası ve bloktaki satır indeksinden oluşan bir değer çiftidir. TID, bir satırın, tablodaki fiziksel konumunu tanımlamak için kullanılır.
 
-``ctid``: Bir satırın ctid değeri kullanılarak o satıra hızlıca erişilebilir. Bununla birlikte eğer öncesinde VACUUM FULL işlemi uygulanarak satır güncellendiyse veya taşındıysa CTID değeri de değişecektir. Dolayısıyla CTID kolonu, uzun vadeli bir ID kolonu olarak güvenilir değildir. Bu tür mantıksal bir tespit işinde, OID kolonu hatta daha da iyisi kullanıcının tanımladığı bir seri no kolonu çok daha işlevseldir. 
+``ctid``: Bir satırın ctid değeri kullanılarak o satıra hızlıca erişilebilir. Bununla birlikte eğer öncesinde VACUUM FULL işlemi uygulanarak satır güncellendiyse veya taşındıysa CTID değeri de değişecektir. Dolayısıyla CTID kolonu, uzun vadeli bir ID kolonu olarak güvenilir değildir. Bu tür mantıksal bir tespit işinde, OID kolonu hatta daha da iyisi kullanıcının tanımladığı bir seri no kolonu çok daha işlevseldir.
 
 OID kolonlar 32 bit ifadeler olup (uygun önlemler uygulanmazsa) unique değildir. Cluster bazında atanan değerler olan oid kolonlarının değerleri incelendiğinde, uzun zamandır çalışan bir clusterda sarmalama sorunu yaşanabilmektedir. Doğru bir uygulamada, tablodaki satırların versiyon tespit çalışmalarında kullanmak amacıyla bir sequence üretici şiddetle tavsiye edilmektedir. Ya da aşağıdaki önlemleri almak şartıyla OID kullanımı da düşünülebilir:
 
@@ -644,5 +644,12 @@ SELECT (on_hand.item).name FROM on_hand WHERE (on_hand.item).price > 9.99;
 
 ## PostgreSQL Fonksiyon ve Operatör Tipleri
 
+PostgreSQL, çok sayıda fonksiyon ve operatör sunmaktadır. Kullanıcılar, bu gömülü fonksiyon ve operatörlere ilave olarak kendileri de fonksiyon ve operatör tanımı yapabilirler. Sistemde tanımlı tüm fonksiyon ve operatörleri psql’de \df ve \do komutlarıyla listeleyebilirler.
+
+### MANTIKSAL OPERATÖRLER
+
+PostgreSQL’de kullanılan mantıksal operatörler ``AND``, ``OR`` ve ``NOT`` olarak listelenebilir. Örneğin TRUE, FALSE veya NULL değerler alabilecek a ve b gibi iki boolean tipinde değişkenin aldığı değerlere göre AND, OR ve NOT mantıksal operatörlerinin sonuçlar üzerindeki etkileri aşağıdaki tablolarda görülmektedir.
+
+![mantıksal operatörler](/images/veri_operator_tipleri_sekil9.png)
 
 {% include links.html %}
