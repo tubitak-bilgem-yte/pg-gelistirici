@@ -1,0 +1,68 @@
+# This is your sidebar TOC. The sidebar code loops through sections here and provides the appropriate formatting.
+
+entries:
+- title: sidebar
+  product: PostgreSQL Geliştirici Dokümantasyonu
+  version: Beta
+  folders:
+
+  - title:
+    output: pdf
+    type: frontmatter
+    folderitems:
+    - title:
+      url: /titlepage.html
+      output: pdf
+      type: frontmatter
+    - title:
+      url: /tocpage.html
+      output: pdf
+      type: frontmatter
+
+  - title: Giriş
+    output: web, pdf
+    folderitems:
+    
+    - title: Giriş
+      url: /index.html
+      output: web, pdf
+      type: homepage
+
+  - title: Veri Tipleri
+    output: web, pdf
+    folderitems:
+
+    - title: PostgreSQL'e Özgü Veri ve Operatör Tipleri
+      url: /mydoc_veri_operator_tipleri.html
+      output: web, pdf
+
+  - title: Fonksiyon ve Operatör Tipleri
+    output: web, pdf
+    folderitems:
+
+
+  - title: Sorguların Yapısı ve Davranışları
+    output: web, pdf
+    folderitems:
+
+
+  - title: Öne Çıkan Özellikler
+    url: /mydoc_sidebar_navigation.html
+    output: web, pdf
+    folderitems:
+    
+
+  - title: Veritabanı Programlama
+    url: /mydoc_sidebar_navigation.html
+    output: web, pdf
+    folderitems:
+    
+
+  - title: Veri Aktarımı ve Eklentiler
+    url: /mydoc_sidebar_navigation.html
+    output: web, pdf
+    folderitems:
+    
+#    - title: PostgreSQL MVCC ve VACUUM
+#      url: /mydoc_sidebar_navigation.html
+#      output: web, pdf
