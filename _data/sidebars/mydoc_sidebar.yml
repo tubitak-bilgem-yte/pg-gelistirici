@@ -43,20 +43,25 @@ entries:
   - title: Sorguların Yapısı ve Davranışları
     output: web, pdf
     folderitems:
+    
+    - title: Sorgular ve Yazım Kuralları
+      url: /mydoc_sorgu_yazım_kuralları.html
+      output: web, pdf
 
-
+    - title: Sorgu Tipleri
+      url: /mydoc_sorgu_tipleri.html
+      output: web, pdf
+      
   - title: Öne Çıkan Özellikler
     url: /mydoc_sidebar_navigation.html
     output: web, pdf
     folderitems:
     
-
   - title: Veritabanı Programlama
     url: /mydoc_sidebar_navigation.html
     output: web, pdf
     folderitems:
     
-
   - title: Veri Aktarımı ve Eklentiler
     url: /mydoc_sidebar_navigation.html
     output: web, pdf
