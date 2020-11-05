@@ -229,4 +229,198 @@ Tarih ve saat tipi veriler, çok sayıda PostgreSQL operatör ve fonksiyonu kull
 |``to_number(text, text)``| numeric | string'i numeric’e çevirir | to_number('12,454.8-', '99G999D9S') |
 |``to_timestamp(text,text)`` | timestamp with time zone | string'i time stamp’a çevirir | to_timestamp('05 Dec 2000', 'DD Mon YYYY') |
 
+Aşağıda bazı örnekler verilmiştir.
+
+| İfade | Sonuç |
+|-------|--------|
+| ``to_char(current_timestamp, 'Day, DD  HH12:MI:SS')`` | 'Tuesday  , 06  05:39:18' |
+| ``to_char(current_timestamp, 'FMDay, FMDD  HH12:MI:SS')`` | 'Tuesday, 6  05:39:18' |
+| ``to_char(-0.1, '99.99')`` | '  -.10' |
+| ``to_char(-0.1, 'FM9.99')`` | '-.1' |
+| ``to_char(-0.1, 'FM90.99')`` | '-0.1' |
+| ``to_char(0.1, '0.9')`` | ' 0.1' |
+| ``to_char(12, '9990999.9')`` | '    0012.0' |
+| ``to_char(12, 'FM9990999.9')`` | '0012.' |
+| ``to_char(485, '999')`` | ' 485' |
+| ``to_char(-485, '999')`` | '-485' |
+| ``to_char(485, '9 9 9')`` | ' 4 8 5' |
+| ``to_char(1485, '9,999')`` | ' 1,485' |
+| ``to_char(1485, '9G999')`` | ' 1 485' |
+| ``to_char(148.5, '999.999')`` | ' 148.500' |
+| ``to_char(148.5, 'FM999.999')`` | '148.5' |
+| ``to_char(148.5, 'FM999.990')`` | '148.500' |
+| ``to_char(148.5, '999D999')`` | ' 148,500' |
+| ``to_char(3148.5, '9G999D999')`` | ' 3 148,500' |
+| ``to_char(-485, '999S')`` | '485-' |
+| ``to_char(-485, '999MI')`` | '485-' |
+| ``to_char(485, '999MI')`` | '485 ' |
+| ``to_char(485, 'FM999MI')`` | '485' |
+| ``to_char(485, 'PL999')`` | '+485' |
+| ``to_char(485, 'SG999')`` | '+485' |
+| ``to_char(-485, 'SG999')`` | '-485' |
+| ``to_char(-485, '9SG99')`` | '4-85' |
+| ``to_char(-485, '999PR')`` | '<485>' |
+| ``to_char(485, 'L999')`` | 'DM 485' |
+| ``to_char(485, 'RN')`` | '        CDLXXXV' |
+| ``to_char(485, 'FMRN')`` | 'CDLXXXV' |
+| ``to_char(5.2, 'FMRN')`` | 'V' |
+| ``to_char(482, '999th')`` | ' 482nd' |
+| ``to_char(485, '"Good number:"999')`` | 'Good number: 485' |
+| ``to_char(485.8, '"Pre:"999" Post:" .999')`` | 'Pre: 485 Post: .800' |
+| ``to_char(12, '99V999')`` | ' 12000' |
+| ``to_char(12.4, '99V999')`` | ' 12400' |
+| ``to_char(12.45, '99V9')`` | ' 125' |
+| ``to_char(0.0004859, '9.99EEEE')`` | ' 4.86e-04' |
+
+Tarih - zaman fonksiyonları ile dört işlem yapılabilir. Burada tarih - zaman tipinde veriler (tarih, zaman, zaman aralığı, saat vs)  bileşenleri birbirleriyle dört işleme sokulabilir. Aşağıda örnekleri vardır.
+
+| Operatör | Örnek | Sonuç |
+|-------|--------|--------|
+| + | ``date '2001-09-28' + integer '7'`` | date '2001-10-05' |
+| + | ``date '2001-09-28' + interval '1 hour'``| timestamp '2001-09-28 01:00:00' |
+| + | ``date '2001-09-28' + time '03:00'``| timestamp '2001-09-28 03:00:00' |
+| + | ``interval '1 day' + interval '1 hour'`` | interval '1 day 01:00:00' |
+| + | ``timestamp '2001-09-28 01:00' + interval '23 hours'`` | timestamp '2001-09-29 00:00:00' |
+| + | ``time '01:00' + interval '3 hours'`` | time '04:00:00' |
+| - | ``- interval '23 hours'`` | interval '-23:00:00' |
+| - | ``date '2001-10-01' - date '2001-09-28'`` | integer '3' (days) |
+| - | ``date '2001-10-01' - integer '7'`` | date '2001-09-24' |
+| - | ``date '2001-09-28' - interval '1 hour'`` | timestamp '2001-09-27 23:00:00' |
+| - | ``time '05:00' - time '03:00'`` | interval '02:00:00' |
+| - | ``time '05:00' - interval '2 hours'`` | time '03:00:00' |
+| - | ``timestamp '2001-09-28 23:00' - interval '23 hours'`` | timestamp '2001-09-28 00:00:00' |
+| - | ``interval '1 day' - interval '1 hour'`` | interval '1 day -01:00:00' |
+| - | ``interval '1 day' - interval '1 hour'`` | interval '1 day 15:00:00' |
+| *| ``900* interval '1 second'`` | interval '00:15:00' |
+| *| ``21* interval '1 day'`` | interval '21 days' |
+| *| ``double precision '3.5'* interval '1 hour'`` | interval '03:30:00' |
+| / | ``interval '1 hour' / double precision '1.5'`` | interval '00:40:00' |
+
+Bunların haricinde çok sayıda tarih / zaman fonksiyonu da bulunmaktadır. Bunlar da aşağıdaki tabloda sunulmuştur.
+
+| Fonksiyon | Dönen Veri Tipi | Açıklama | Örnek | Sonuç |
+|-------|--------|-------|--------|--------|
+|``age (timestamp, timestamp)``| interval | iki argümanı birbirinden çıkartarak bir zaman aralığı elde eder.| `age(timestamp '2001-04-10', timestamp '1957-06-13')` | 43 years 9 mons 27 days|
+|``age (timestamp)`` | interval | Bir zaman ile o anki tarihin farkını alır| ``age(timestamp '1957-06-13')``| 43 years 8 mons 3 days |
+|``clock_timestamp()``| timestamp with time zone | Sorgu çalıştırma anındaki timestamp'i getirir |||
+| ``current_date`` | date | Tarihi getirir |  |  |
+| ``current_time`` | time with time zone | Saati getirir |  |  |
+| ``current_timestamp`` | timestamp with time zone | Transaction başlangıcındaki timestampi getirir | | |
+| ``date_part (text, timestamp)`` | double precision | bir tarih değerinin belirtilen kesimini alır | ``date_part('hour', timestamp '2001-02-16 20:38:40')`` | 20 |
+| ``date_part (text, interval)`` | double precision | bir tarih değerinin belirtilen zaman birimindeki kısmını alır | `date_part('month', interval '2 years 3 months')` | 3 |
+| ``date_trunc (text, timestamp)`` | timestamp | bir tarih değerinin belirtilen zaman biriminden sonraki kısmını atar | `date_trunc('hour', timestamp '2001-02-16 20:38:40')` | 2001-02-16 20:00:00 |
+| ``date_trunc (text, interval)`` | interval | bir tarih değerini belirtilen zaman aralıklarına böldüğünde sonra kalan artık kısmı atar | `date_trunc('hour', interval '2 days 3 hours 40 minutes')` | 2 days 03:00:00 |
+| ``extract (field from timestamp)`` | double precision | bir tarih değerinin belirtilen kesimini alır | `extract(hour from timestamp '2001-02-16 20:38:40')` | 20 |
+| ``extract (field from interval)`` | double precision | bir tarih değerinin belirtilen zaman birimindeki kısmını alır | `extract(month from interval '2 years 3 months')` | 3 |
+| ``isfinite (date)`` | boolean | bir tarihin sonlu değerde olup olmadığını test eder (tarih +/- sonsuz mu) | `isfinite(date '2001-02-16')` | true |
+| ``isfinite (timestamp)`` | boolean | bir timestamp’in sonlu değerde olup olmadığını test eder (timestamp +/- sonsuz mu) | isfinite(timestamp '2001-02-16 21:28:30') | true |
+| ``isfinite (interval)`` | boolean | bir zaman aralığının sonlu değerde olup olmadığını test eder (interval +/- sonsuz mu) | `isfinite(interval '4 hours')` | true |
+| ``justify_days (interval)`` | interval | bir zaman aralığını temel zaman birimi ay olacak şekilde ifade eder | `justify_days(interval '35 days')` | 1 mon 5 days |
+| ``justify_hours (interval)`` | interval | bir zaman aralığını temel zaman birimi gün olacak şekilde ifade eder | `bir zaman aralığını temel zaman birimi gün olacak şekilde ifade eder` | 1 day 03:00:00 |
+| ``justify_interval (interval)`` | interval | bir zaman aralığını justify_days ve justify_hours, fonksiyonlarını bir arada kullanacak şekilde ayarlar | `justify_interval(interval '1 mon -1 hour')` | 29 days 23:00:00 |
+| ``localtime`` | time | yerel saati verir | | |
+| ``localtimestamp`` | timestamp | yerel saate göre timestamp üretir. | | |
+| ``make_date (year int, monthint, day int)`` | date | yıl, ay ve gün alanlarını kullanarak tarih üretir | `make_date(2013, 7, 15)` | 2013-07-15 |
+| ``make_interval(years intDEFAULT 0, months int DEFAULT 0, weeks int DEFAULT 0, daysint DEFAULT 0, hours intDEFAULT 0, mins int DEFAULT 0, secs double precision DEFAULT 0.0)`` | interval | yıl, ay, hafta, gün, saat, dakika ve saniye alanlarını kullanarak interval üretir | `make_interval(days => 10)` | 10 days |
+| ``make_time (hour int, min int,sec double precision)`` | time | saat, dakika ve saniye alanlarını kullanarak zaman  üretir | `make_time(8, 15, 23.5)` | 08:15:23.5 |
+| ``make_ timestamp (year int,month int, day int, hour int,min int, sec double precision)`` | timestamp | yıl, ay, gün, saat, dakika ve saniye alanlarını kullanarak timestamp üretir | `make_timestamp(2013, 7, 15, 8, 15, 23.5)` | 2013-07-15 08:15:23.5 |
+| ``make_ timestamptz (year int,month int, day int, hour int,min int, sec double precision, [ timezone text ])`` | timestamp with time zone | yıl, ay, gün, saat, dakika ve saniye alanlarını kullanarak timestamp with time zone üretir. | `make_timestamptz(2013, 7, 15, 8, 15, 23.5)` | 2013-07-15 08:15:23.5+01 |
+| ``now()`` | timestamp with time zone | transaction başlangıcındaki timestamp with timezone bilgisi | | |
+| ``statement_ timestamp()`` | timestamp with time zone | sorgu başlangıcındaki timestamp with timezone bilgisi | | |
+| ``timeofday()`` | text | Sorgu çalıştırma anındaki timestampi text olarak getirir |  |  |
+| ``transaction_ timestamp()`` | timestamp with time zone | transaction başlangıcındaki timestampi getirir |  |  |
+| ``to_timestamp (double precision)`` | timestamp with time zone | Unix epokunu (1970-01-01 00:00:00+00 anından beri geçen saniyeler) timestamp’e dönüştürür | `to_timestamp(1284352323)` | 2010-09-13 04:32:03+00 |
+
+### XML Fonsksiyon ve Operatörleri
+
+Bu bölümde anlatılacak fonksiyonlar ve fonksiyon benzeri ifadeler xml türünde kaydedilmiş veriler üzerinde işlevseldir. Fonksiyon benzeri ifadeler arasında *xmlparse* ve *xmlserialize* bulunmakta olup bunlar başka türlerden xml’e ve xml’den başka türlere tip dönüşümü yapmakta kullanılır. Bu fonksiyonların birçoğunun kullanılabilmesi için kurulumun ``-configure --with-libxml`` ile konfigüre edilmiş olması gerekmektedir.
+
+SQL verilerinden XML içerik üretmek amacıyla kullanılan bazı fonksiyonlar arasında ``xmlcomment( )``, ``xmlconcat( )``, ``xmlelement( )``, ``xmlforest( )``, ``xmlpi( )``, ``xmlroot( )``, ``xmlagg( )`` sayılabilir. Bu fonksiyonların tamamı, ya çeşitli xml elementlerini ya da bütün bir xml dökümanını oluşturmak için kullanılabilir. Bu fonksiyonlar için bazı örnekler aşağıda verilmiştir.
+
+Örneğin ``xmlconcat( )`` fonksiyonu bir dizi xml değerini birleştirerek tek bir xml içeren tek bir içeriğe dönüştürür.
+
+```sql
+SELECT xmlconcat('<abc/>', '<bar>foo</bar>');
+
+      xmlconcat
+----------------------
+ <abc/><bar>foo</bar>
+```
+
+``xmlelement( )``, istenen bir xml elementini, özniteliğini ve içeriğini yaratır.
+
+```sql
+SELECT xmlelement(name foo);
+
+ xmlelement
+------------
+ <foo/>
+
+SELECT xmlelement(name foo, xmlattributes('xyz' as bar));
+
+    xmlelement
+------------------
+ <foo bar="xyz"/>
+
+SELECT xmlelement(name foo, xmlattributes(current_date as bar), 'cont', 'ent');
+
+             xmlelement
+-------------------------------------
+ <foo bar="2007-01-26">content</foo>
+```
+
+``xmlforest( )``, liste olarak verilen bir dizi xml elementini ve onların içeriklerini xml olarak oluşturur.
+
+```sql
+SELECT xmlforest('abc' AS foo, 123 AS bar);
+
+          xmlforest
+------------------------------
+ <foo>abc</foo><bar>123</bar>
+
+
+SELECT xmlforest(table_name, column_name)
+FROM information_schema.columns
+WHERE table_schema = 'pg_catalog';
+
+                                         xmlforest
+-------------------------------------------------------------------------------------------
+ <table_name>pg_authid</table_name><column_name>rolname</column_name>
+ <table_name>pg_authid</table_name><column_name>rolsuper</column_name>
+```
+
+``xmlpi( )`` fonksiyonu bir xml işleme komutu oluşturur. Bu fonksiyonun kullanımında içerik üzerinde bazı kontroller yapılmalıdır, yoksa oluşan xml’de hatalar ortaya çıkabilir.
+
+```sql
+SELECT xmlpi(name php, 'echo "hello world";');
+
+            xmlpi
+-----------------------------
+ <?php echo "hello world";?>
+
+```
+
+``xmlroot( )`` fonksiyonu ise bir xml içeriğinin kök tag’indeki bazı öznitelikleri düzenlemeye yarar.
+
+```sql
+SELECT xmlroot(xmlparse(document '<?xml version="1.1"?><content>abc</content>'),
+               version '1.0', standalone yes);
+
+                xmlroot
+----------------------------------------
+ <?xml version="1.0" standalone="yes"?>
+ <content>abc</content>
+```
+
+XML fonksiyonları arasında xml dosya kontrol ifadeleri de bulunmaktadır. Bunlar aşağıda listelenmiştir. Bu ifadeler sorgu içinde kullanılarak boolean değerler döndürürler.
+
+```sql
+IS DOCUMENT
+IS NOT DOCUMENT
+XMLEXISTS
+xml_is_well_formed
+```
+
+Son olarak XML fonksiyonları içinde XML işleme fonksiyonları sayılabilir. Bunlar ``xpath( )``, ``xpath_exists( )``, ``xmltable( )`` ile ``map`` fonksiyonları ``table_to_xml( )``, ``query_to_xml( )`` ve ``cursor_to_xml( )``’dir.
+
 {% include links.html %}
