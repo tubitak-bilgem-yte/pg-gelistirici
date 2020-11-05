@@ -28,18 +28,17 @@ entries:
       output: web, pdf
       type: homepage
 
-  - title: Veri Tipleri
+  - title: PostgreSQL'e Özgü Veri ve Operatör Tipleri
     output: web, pdf
     folderitems:
 
-    - title: PostgreSQL'e Özgü Veri ve Operatör Tipleri
-      url: /mydoc_veri_operator_tipleri.html
+    - title: Veri Tipleri
+      url: /mydoc_veri_tipleri.html
       output: web, pdf
 
-  - title: Fonksiyon ve Operatör Tipleri
-    output: web, pdf
-    folderitems:
-
+    - title: Fonksiyon ve Operatör Tipleri
+      url: /mydoc_operator_tipleri.html
+      output: web, pdf
 
   - title: Sorguların Yapısı ve Davranışları
     output: web, pdf

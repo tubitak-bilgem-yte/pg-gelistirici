@@ -1,11 +1,11 @@
 ---
-title: "PostgreSQL'e Özgü Veri ve Operatör Tipleri"
+title: "PostgreSQL Veri Tipleri"
 tags: [PostgreSQL]
 keywords: PostgreSQL
 last_updated: November 3, 2020
-summary: "PostgreSQL'e Özgü Veri ve Operatör Tipleri"
+summary: "PostgreSQL Veri Tipleri"
 sidebar: mydoc_sidebar
-permalink: mydoc_veri_operator_tipleri.html
+permalink: mydoc_veri_tipleri.html
 folder: mydoc
 ---
 
@@ -641,15 +641,5 @@ SELECT item.name FROM on_hand WHERE item.price > 9.99;
 
 SELECT (on_hand.item).name FROM on_hand WHERE (on_hand.item).price > 9.99;
 ```
-
-## PostgreSQL Fonksiyon ve Operatör Tipleri
-
-PostgreSQL, çok sayıda fonksiyon ve operatör sunmaktadır. Kullanıcılar, bu gömülü fonksiyon ve operatörlere ilave olarak kendileri de fonksiyon ve operatör tanımı yapabilirler. Sistemde tanımlı tüm fonksiyon ve operatörleri psql’de \df ve \do komutlarıyla listeleyebilirler.
-
-### MANTIKSAL OPERATÖRLER
-
-PostgreSQL’de kullanılan mantıksal operatörler ``AND``, ``OR`` ve ``NOT`` olarak listelenebilir. Örneğin TRUE, FALSE veya NULL değerler alabilecek a ve b gibi iki boolean tipinde değişkenin aldığı değerlere göre AND, OR ve NOT mantıksal operatörlerinin sonuçlar üzerindeki etkileri aşağıdaki tablolarda görülmektedir.
-
-![mantıksal operatörler](/images/veri_operator_tipleri_sekil9.png)
 
 {% include links.html %}
