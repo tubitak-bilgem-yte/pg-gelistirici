@@ -22,7 +22,7 @@ entries:
   - title: Giriş
     output: web, pdf
     folderitems:
-    
+
     - title: Giriş
       url: /index.html
       output: web, pdf
@@ -43,7 +43,7 @@ entries:
   - title: Sorguların Yapısı ve Davranışları
     output: web, pdf
     folderitems:
-    
+
     - title: Sorgular ve Yazım Kuralları
       url: /mydoc_sorgu_yazım_kuralları.html
       output: web, pdf
@@ -51,22 +51,34 @@ entries:
     - title: Sorgu Tipleri
       url: /mydoc_sorgu_tipleri.html
       output: web, pdf
-      
+
   - title: Öne Çıkan Özellikler
     url: /mydoc_sidebar_navigation.html
     output: web, pdf
     folderitems:
-    
+
+    - title: PostgreSQL Transaction Yönetimi
+      url: /mydoc_transaction_yonetimi.html
+      output: web, pdf
+
+    - title: Yabancı Anahtar ve Miras
+      url: /mydoc_foreignKey_inheritance.html
+      output: web, pdf
+
+    - title: İndex Türleri ve Kullanımları
+      url: /mydoc_index_turleri.html
+      output: web, pdf
+
   - title: Veritabanı Programlama
     url: /mydoc_sidebar_navigation.html
     output: web, pdf
     folderitems:
-    
+
   - title: Veri Aktarımı ve Eklentiler
     url: /mydoc_sidebar_navigation.html
     output: web, pdf
     folderitems:
-    
+
 #    - title: PostgreSQL MVCC ve VACUUM
 #      url: /mydoc_sidebar_navigation.html
 #      output: web, pdf

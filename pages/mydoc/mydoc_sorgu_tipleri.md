@@ -212,7 +212,7 @@ INSERT INTO products (product_no, name, price)
 
 ```
 
-Halihazırda tabloda bulunan veriler üzerinde bir değişiklik yapılması işlemi UPDATE cümleciğiyle sağlanır. UPDATE bir tablo üzerinde SET ile tanımlanan kolonda güncelleme yapar ve çoğu durumda SET sonrasında WHERE ile bir kriter verilerek güncellenecek satır ya da satırlardan oluşan bir alt küme elde edilir. Eğer UPDATE, WHERE ile tanımlanmış bir filtreleme işlemine tabi tutulmadan işletilirse bütün tablo üzerinde güncelleme yapacağı için dikkatli olunmalıdır.
+Halihazırda tabloda bulunan veriler üzerinde bir değişiklik yapılması işlemi ``UPDATE`` cümleciğiyle sağlanır. **UPDATE** bir tablo üzerinde **SET** ile tanımlanan kolonda güncelleme yapar ve çoğu durumda SET sonrasında **WHERE** ile bir kriter verilerek güncellenecek satır ya da satırlardan oluşan bir alt küme elde edilir. Eğer UPDATE, WHERE ile tanımlanmış bir filtreleme işlemine tabi tutulmadan işletilirse bütün tablo üzerinde güncelleme yapacağı için dikkatli olunmalıdır.
 
 ```sql
 UPDATE products SET price = 10 WHERE price = 5;
@@ -248,5 +248,274 @@ SELECT 3 * 4;
 SELECT random();
 ```
 
+Sorgular, bir “tablo ifadesi” ile hesaplanan tablolardan çekilir. Bir tablo ifadesi aslında FROM cümleciği ile oluşturulur. FROM cümleciğini gerektiğinde ``WHERE``, ``GROUP BY`` ve ``HAVING`` ibareleri takip eder. Seçim yapılan (veya hesaplama yoluyla elde edilen) tablolara takma isimler verilebilir. Bunun için AS ve sonrasında verilmek istenen takma isim girilir. Ayrıca FROM ibaresinden sonra parantez içinde tanımlanmış bir başka sorgu kullanıldığında, alt sorgudan dönen sonuç tablosu, ana sorgunun içinden seçim yapacağı tablo ifadesi gibi çalışır.
+
+Birden fazla tablo ``JOIN`` ile birleştirilebilir ve sorgularda birçok tablodan gelen ilişkili veriler yer alabilir. Çeşitli JOIN tipleri arasında ``CROSS JOIN``, ``INNER JOIN``, ``LEFT/RIGHT OUTER JOIN`` ve ``FULL OUTER JOIN`` sayılabilir. Birleştirilmiş tablolar, ilgili kurallara göre birleştirilmiş birden fazla tablonun birleşiminden oluşmuş / türemiş tablolardır.
+
+Join tipleri içinde **CROSS JOIN** olarak adlandırılan tür aslında iki tablonun kartezyen çarpımını üretir. CROSS JOIN ile çaprazlanan tablolarda sırayla m ve n satır varsa çaprazlanmış tablonun m*n satırı olur.
+
+İki tablonun join’le birleştirilmesi sırasında ``ON`` ve ``USING`` ifadeleri kullanılarak birleştirme şartı ifade edilir. Aşağıda T1 ve T2 tablolarının birleştirilmesi için üç farklı yazım sunulmuştur. Bu yazım ``INNER`` ve ``LEFT / RIGHT / FULL OUTER JOIN`` türleri için kullanılmaktadır. Yazım sırasında ON ve USING kullanılarak birleştirmeye temel oluşturacak kolon eşleşmesinin yapılacağı kolonlar belirtilir.
+
+```sql
+T1 { [INNER] | { LEFT | RIGHT | FULL } [OUTER] } JOIN T2 ON boolean_expression
+T1 { [INNER] | { LEFT | RIGHT | FULL } [OUTER] } JOIN T2 USING ( join column list )
+T1 NATURAL { [INNER] | { LEFT | RIGHT | FULL } [OUTER] } JOIN T2
+```
+
+**Inner Join** yapıldığında, eşleşmenin yapılacağı kolonlar incelenir ve her iki tablonun ilgili kolonunda da olan değerlerin çaprazlandığı bir birleştirme yapılır. Aslında bu birleştirme ``ON`` ifadesinden sonra gelen şartın uygulanması sonrası çalıştırılır .
+
+**Outer Join** işlemleri *Left*, *Right* ve *Full* olarak uygulanabilir. Outer Join işleminde önce Inner Join uygulanır. Yani *ON* ifadesinden sonra gelen birleştirme şartına uyan satırlar JOIN ile oluşacak tabloya yazılır. Sonrası için **LEFT JOIN**’de 'T1' tablosunda 'T1' = 'T2' eşitliğine uymayan tüm satırlar eklenirken, **RIGHT JOIN’**de 'T2' tablosunda 'T1' = 'T2' eşitliğine uymayan tüm satırlar eklenir. **FULL OUTER JOIN** işleminde hem *LEFT* hem de *RIGHT OUTER JOIN* ile eklenen tüm satırlar INNER JOIN’le oluşan tabloya eklenir.
+
+**USING** ifadesinin *ON*’dan farkı, USING ifadesinde birleştirilmek istenen 'T1' ve 'T2' tablolarında eşitlenecek kolonların isimlerinin aynı olması halinden istifade edilerek yazım uzunluğunu kısaltmasıdır. Eğer iki tablo için birleştirilecek kolonların isimleri birebir aynı ise ON yerine USING ifadesi yazılır ve sonrasında isimleri aynı kolonlar virgülle ayrılarak girilir. 'T1' ve 'T2' tablolarında 'a' ve 'b' isminde kolonlar olduğunu, aynı tür veriyi tuttuğunu ve 'a' ile 'b' kolonlarını birleştirme için kullanmak istediğimizi varsayalım. "USING (a,b)" ifadesi yazıldığında bu aslında ON T1.a = T2.a AND T1.b = T2.b ifadesine denktir.
+
+**NATURAL** ise *USING* kullanmanın kısayoludur. NATURAL JOIN ile JOIN yapıldığında arka planda ilgili tabloların aynı isimli kolonlarının listelendiği USING ifadeleri oluşturulur.
+
+Bu JOIN türlerine örnek vermek için sırayla 'T1' ve 'T2' tablolarını aşağıdaki gibi oluşturalım.
+
+```sql
+    T1                        T2
+num | name                num | value
+-----+------             -----+-------
+   1 | a                    1 | xxx
+   2 | b                    3 | yyy
+   3 | c                    5 | zzz
+
+```
+
+Aşağıdaki gibi CROSS JOIN yaptığımızda 3x3=9 satırlık bir tablo üretiriz.
+
+```sql
+SELECT * FROM t1 CROSS JOIN t2;
+ num | name | num | value
+-----+------+-----+-------
+   1 | a    |   1 | xxx
+   1 | a    |   3 | yyy
+   1 | a    |   5 | zzz
+   2 | b    |   1 | xxx
+   2 | b    |   3 | yyy
+   2 | b    |   5 | zzz
+   3 | c    |   1 | xxx
+   3 | c    |   3 | yyy
+   3 | c    |   5 | zzz
+(9 rows)
+```
+
+ON, USING ve NATURAL kullanarak INNER JOIN yaparsak aşağıdaki sonuçları elde ederiz.
+
+```sql
+SELECT * FROM t1 INNER JOIN t2 ON t1.num = t2.num;
+ num | name | num | value
+-----+------+-----+-------
+   1 | a    |   1 | xxx
+   3 | c    |   3 | yyy
+(2 rows)
+
+SELECT * FROM t1 INNER JOIN t2 USING (num);
+ num | name | value
+-----+------+-------
+   1 | a    | xxx
+   3 | c    | yyy
+(2 rows)
+
+SELECT * FROM t1 NATURAL INNER JOIN t2;
+ num | name | value
+-----+------+-------
+   1 | a    | xxx
+   3 | c    | yyy
+(2 rows)
+```
+
+Aşağıda ise LEFT, RIGHT ve FULL JOIN örnekleri sunulmaktadır.
+
+```sql
+SELECT * FROM t1 LEFT JOIN t2 ON t1.num = t2.num;
+ num | name | num | value
+-----+------+-----+-------
+   1 | a    |   1 | xxx
+   2 | b    |     |
+   3 | c    |   3 | yyy
+(3 rows)
+
+SELECT * FROM t1 LEFT JOIN t2 USING (num);
+ num | name | value
+-----+------+-------
+   1 | a    | xxx
+   2 | b    |
+   3 | c    | yyy
+(3 rows)
+
+SELECT * FROM t1 RIGHT JOIN t2 ON t1.num = t2.num;
+ num | name | num | value
+-----+------+-----+-------
+   1 | a    |   1 | xxx
+   3 | c    |   3 | yyy
+     |      |   5 | zzz
+(3 rows)
+
+SELECT * FROM t1 FULL JOIN t2 ON t1.num = t2.num;
+ num | name | num | value
+-----+------+-----+-------
+   1 | a    |   1 | xxx
+   2 | b    |     |
+   3 | c    |   3 | yyy
+     |      |   5 | zzz
+(4 rows)
+```
+
+Özellikle Join işlemlerinde Tablo.Kolon şeklinde bir notasyon kullandığımızda ve bu kullanım yüzünden sorgunun yazımı çok uzadığında ya da karmaşanın önüne geçmek istediğimizde kullanılabilecek bir kısayol olarak tablolara takma isim verilebilir. Bunun için tablo isminin sonrasında AS ifadesi ve tablo için kullanılacak takma adına girilmesi yeterlidir. Sorgu içinde bundan sonra geçen ifadelerde tablonun gerçek isminin yanı sıra takma ismi de kullanılabilir. Takma ismin JOIN gibi bir işlemde genel kullanımı aşağıdaki şekildedir.
+
+```sql
+SELECT * FROM cok_uzun_tablo_ismi t
+JOIN baska_uzun_isimli_bir_tablonun_ismi b
+ON t.id = b.num;
+```
+
+Bazen yaptığımız sorguyu bir (veya join ile oluşturduğumuz birden fazla) tablodan değil, başka bir sorgunun sonucu olarak dönen tablodan yapmak isteriz. Sorgu sonucu olarak dönen tabloya alt sorgu diyebiliriz ve alt sorguyu ana sorgudan ayırmak için parantezler içinde yazarak sorgumuza yerleştirebiliriz.
+
+```sql
+FROM (SELECT * FROM table1) AS alias_name
+```
+
+VALUES ifadesi ile bir liste üretildiğinde bu da altsorgu olarak kullanılabilir.
+
+```sql
+FROM (VALUES ('anne', 'smith'), ('bob', 'jones'), ('joe', 'blow'))
+     AS names(first, last)
+```
+
+Alt sorgu ifadesi FROM’dan sonra gelmek zorunda değildir ve tüm sorgu içinde herhangi bir yerde olabilir. Sorgulama kümesini süzmek için kullandığımız WHERE ifadesinden sonra gelen bir altsorgu örneği aşağıdadır.
+
+```sql
+SELECT * FROM foo
+    WHERE foosubid IN (
+                        SELECT foosubid
+                        FROM getfoo(foo.fooid) z
+                        WHERE z.fooid = foo.fooid
+                      );
+```
+
+Hatta altsorgu bir başka veritabanına bağlantı cümleciği ile bu veritabanına yapılacak bir sorgunun sonucu da olabilir. Özetle aşağıdaki durumda sorgu yapılan ana tablo ifadesi başka veritabanındaki tablo üzerinde yapılan bir sorgudur.
+
+```sql
+SELECT *
+    FROM dblink('dbname=mydb', 'SELECT proname, prosrc FROM pg_proc')
+      AS t1(proname name, prosrc text)
+    WHERE proname LIKE 'bytea%';
+```
+
+```sql
+```
+
+Burada başka bir veritabanına bağlantı kurmayı sağlayan ``dblink( )`` ifadesi bir fonksiyondur.
+
+Tablo ifadesi içerisinde önemli yeri olan bir diğer cümlecik ``WHERE`` cümleciğidir. WHERE kendisinden sonra gelen filtreleme ifadesine göre seçili tablo kolonları içinde filtreleme yapar. WHERE kullanarak tablodaki satırları belli kriterlere göre süzebiliriz.
+
+Süzme kriteri için örnek vermek gerekirse, bir kolonda 'x' değerinden büyük olan satırlar, bir kolonun bir diğer kolona eşit olduğu satırlar, bir kolonun değerinin bir alt küme içindekilerden herhangi biri olduğu satırlar WHERE sonrasında kullanılabilecek filtre cümlecikleri olabilir.
+
+```sql
+SELECT ... FROM fdt WHERE c1 > 5
+
+SELECT ... FROM fdt WHERE c1 IN (1, 2, 3)
+
+SELECT ... FROM fdt WHERE c1 IN (SELECT c1 FROM t2)
+
+SELECT ... FROM fdt WHERE c1 IN (SELECT c3 FROM t2 WHERE c2 = fdt.c1 + 10)
+
+SELECT ... FROM fdt WHERE c1 BETWEEN
+           (SELECT c3 FROM t2 WHERE c2 = fdt.c1 + 10) AND 100
+
+SELECT ... FROM fdt WHERE EXISTS (SELECT c1 FROM t2 WHERE c2 > fdt.c1)
+```
+
+Bir veritabanı sorgusunda seçili bir kolondaki değerleri gruplara ayırarak toplu istatistikler üretmek de mümkündür. GROUP BY cümleciği kolon bazında satır grupları oluştururken, ancak GROUP BY’dan sonra gelebilen HAVING cümleciği de bu gruplar içinde filtreleme yapar. Ayrıca GROUP BY ile kolon bazında gruplandırdığımız bir veri setinde grup bazında minimum, maksimum, toplam ya da ortalama gibi grup istatistikleri üretebiliriz.
+
+```sql
+SELECT product_id, p.name, (sum(s.units) * (p.price - p.cost)) AS profit
+    FROM products p LEFT JOIN sales s USING (product_id)
+    WHERE s.date > CURRENT_DATE - INTERVAL '4 weeks'
+    GROUP BY product_id, p.name, p.price, p.cost
+    HAVING sum(p.price * s.units) > 5000;
+```
+
+SELECT sonrasında DISTINCT ifadesi eklenirse, dönen veri kümesi içinde birbirini tekrarlayan değerlerin bulunduğu satırlar da silinmiş olur.
+
+```sql
+SELECT DISTINCT ON (location) location, time, report
+    FROM weather_reports
+    ORDER BY location, time DESC;
+```
+
+SELECT sonrasında kullanılan ``LIMIT`` ifadesi ise sıralı bir şekilde dönen tabloda LIMIT ile belirlenen adette satırın gösterilmesini sağlar. Örneğin bir sınıfta alınan Matematik sınav notları tablodan sorgulandığında en yüksek puanı alan 3 öğrencinin bulunması için SELECT sonrasında LIMIT 3 ifadesi eklenir. Aynı şekilde ``OFFSET`` ifadesi de sorgu sonucuna bir öteleme verilmesini sağlar. Yine LIMIT’in kullanımına benzer şekilde bir sorguda OFFSET 5 eklenirse, sorgu sonucunda dönen veriler 5 satır ötelenerek gösterileceği için ilk 5 kayıttan sonraki kayıtlar ekrana gelir. Yani PostgreSQL ilk 5 satırı kaydırarak gösterir.
+
+İki sorgunun sonucu UNION, INTERSECTION ve EXCEPT kullanılarak birleştirilebilir. Bunun için aşağıdaki şekilde bir yazım uygulanmalıdır.
+
+```sql
+sorgu1 UNION [ALL] sorgu2
+sorgu1 INTERSECT [ALL] sorgu2
+sorgu1 EXCEPT [ALL] sorgu2
+```
+
+UNION, sorgu2’nin sonuçlarını sorgu1’in sonuçlarına ekler. Eğer ALL ibaresi eklenmezse aynı satırları getirmez. ``INTERSECT``, sadece her iki sorguda da dönen satırları gösterir ve ``ALL`` ifadesiyle kullanılmazsa sonuç tablosundaki çoklanarak gelen satırlar elimine edilerek tüm duplikasyonlar teke indirilir. ``EXCEPT`` ise sorguların sorgu1 ile dönen kayıtların sorgu2 ile gelen sonuçlardan  farkını döndürür. Yine benzer şekilde ALL kullanılmazsa çift dönen kayıtlar teke indirgenir.
+
+{% include tip.html content="UNION, INTERSECT ya da EXCEPT kullanarak sorgu sonuçlarını birleştirebilmek için, işleme sokulan iki sorgunun aynı miktarda kolon döndürmesi gerekmektedir ki birleştirme işlemi sorunsuz bir şekilde gerçekleştirilebilsin." %}
+
+Sorgu sonucunda dönen tablonun belli bir düzene göre sıralanması için ise ``ORDER BY`` komutu kullanılır. ORDER BY sonrasında dizilim istenen kolonun veya kolonların ismi, dizilimin yönü (büyükten küçüğe / küçükten büyüğe), NULL dönen satırların dizilimde hangi pozisyonda olacağı ile ilgili etiketler de girilir.
+
+```sql
+SELECT select_list
+    FROM table_expression
+    ORDER BY sort_expression1 [ASC | DESC] [NULLS { FIRST | LAST }]
+             [, sort_expression2 [ASC | DESC] [NULLS { FIRST | LAST }] ...]
+```
+
+Dizilimin yönü varsayılan olarak artan şekildedir. Bununla birlikte kolon ismini takiben ``DESC`` ifadesi konulursa o kolon için azalan dizilim sağlanır. Ayrıca ORDER BY ifadesinin en sonuna ``NULLS FIRST`` veya ``NULLS LAST`` eklenirse bu dizilimde NULL satırların dizilimin başına ya da sonuna konulacağı konusu PostgreSQL’e bildirilmiş olur.
+
+Veritabanında bir tablo oluşturmaksızın, sadece sorgu içinde kullanılmak amacıyla bir tablo oluşturup kullanabilmek için ``VALUES`` ifadesi ile bir liste yaratılabilir. Bu listelerde birden fazla kolon oluşturabilmek için ifadeler virgülle; birden fazla satır oluşturabilmek için ise parantezler içinde yazılır. Aşağıda örneği bulunmaktadır.
+
+```sql
+SELECT * FROM (VALUES (1, 'one'), (2, 'two'), (3, 'three')) AS t (num,letter);
+ num | letter
+-----+--------
+   1 | one
+   2 | two
+   3 | three
+(3 rows)
+```
+
+{% include tip.html content="PostgreSQL VALUES ile oluşturulan listelerdeki kolonlar için varsayılan olarak column1, column2, column3 gibi isimler verir." %}
+
+Veritabanında ilave tablolar oluşturmadan geçici tablolar oluşturmak ve karmaşık olabilecek sorguları kısaltmak için kullanılabilecek bir başka yapı daha vardır. ``WITH`` ile oluşturulan geçici tablolar, geçtiği sorgu içinde bellekte oluşturulur ve gerekli satırları döndürdükten sonra yok olurlar.
+
+Aşağıdaki örnekte WITH ile *regional_sales* geçici tablosu oluşturulmuş ve bu geçici tablo kullanılarak yine *top_regions* geçici tablosu oluşturulmuştur. En sonunda ise bu iki geçici tablo, WITH tanımından sonra gelen esas SELECT tablosunda kaynak olarak kullanılmıştır.
+
+```sql
+WITH regional_sales AS (
+    SELECT region, SUM(amount) AS total_sales
+    FROM orders
+    GROUP BY region
+), top_regions AS (
+    SELECT region
+    FROM regional_sales
+    WHERE total_sales > (SELECT SUM(total_sales)/10 FROM regional_sales)
+)
+SELECT region,
+       product,
+       SUM(quantity) AS product_units,
+       SUM(amount) AS product_sales
+FROM orders
+WHERE region IN (SELECT region FROM top_regions)
+GROUP BY region, product;
+```
+
+``RECURSIVE`` kullanımı ile WITH kendi çıktısına referanslanabilir ve bu sayede kendi içinde tekrarlanabilen sorgular yazılabilir. Aşağıdaki ifade ile 1’den 100’e kadar olan tamsayıların toplamı alınmaktadır.
+
+```sql
+WITH RECURSIVE t(n) AS (
+    VALUES (1)
+   UNION ALL
+    SELECT n+1 FROM t WHERE n < 100
+)
+SELECT sum(n) FROM t;
+```
 
 {% include links.html %}
