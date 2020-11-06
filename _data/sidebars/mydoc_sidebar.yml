@@ -69,6 +69,22 @@ entries:
       url: /mydoc_index_turleri.html
       output: web, pdf
 
+    - title: View / Materialized View
+      url: /mydoc_view_materializedview.html
+      output: web, pdf
+
+    - title: Özetleme (Aggregate) ve Bölümleme (Window) Fonksiyonları
+      url: /mydoc_aggregate_window_fonksiyonları.html
+      output: web, pdf
+
+    - title: Küme, Küp ve Katlama Tipi Yapılar (GROUPING SETS, CUBE, ROLLUP)
+      url: /mydoc_groupingSets_cube_rollup.html
+      output: web, pdf
+
+    - title: Özyinelemi Sorgular (Recursive Queries)
+      url: /mydoc_recursive_queries.html
+      output: web, pdf
+
   - title: Veritabanı Programlama
     url: /mydoc_sidebar_navigation.html
     output: web, pdf
