@@ -39,7 +39,7 @@ CREATE INDEX test2_mm_idx ON test2 (major, minor);
 
 PostgreSQL çok sayıda indekse izin verir: **B-tree**, **Hash**, **GiST**, **SP-GiST**, **GIN** ve **BRIN**. Her indeks türü, farklı sorgu ihtiyaçlarına uygun başka algoritmalarla çalışır. Varsayılan olarak ``CREATE INDEX`` dediğimizde B-tree indeksi yaratılır.
 
-### B-tree
+### B-tree İndeks
 
 B-tree’ler eşitlik ve değer aralığı tipindeki sorgular için verinin tasnif edilmesi mantığına dayalıdır ve birçok duruma uygun bir performans sunar. Bunun yanı sıra, PostgreSQL de eşitlik ve değer aralığı tipindeki sorgularda ``<``, ``>``, ``<=``, ``=>``, ``=`` gibi operatörleri görür görmez **B-tree indeksi** kullanacağını göz önüne alır.
 
@@ -86,7 +86,7 @@ GiST indekslerine benzer şekilde SP-GiST (Space Partitioned Generalized Search 
 
 GIN indeksi de son iki indeksimize benzer şekilde farklı indeksleme stratejilerini desteklemektedir. Ayrıca PostgreSQL’in standart sürümünde GIN indeksiyle birlikte kullanılacak ``<@``, ``@>``, ``=``, ``&&`` operatörleri bulunmaktadır. Standart dağıtımla gelen bu operatörlerin yanında **postgresql-contrib** paketiyle gelen ilave çok sayıda GIN destekli operatör de vardır.
 
-### BRIN (Block Range INdex) indeks
+### BRIN (Block Range INdex) İndeks
 
 BRIN indeksi, indeksleme kolonundaki değer aralığı çok geniş değilse ve çizgisel bir değişim grafiği ortaya koyuyorsa çok hızlı çalışır. Lineer bir artış düzeni içeren veri tipleri üzerinde BRIN uygulandığında, her blok aralığı için minimum ve maksimum değerler depolanır. Hatta örneğin BRIN geometrik / coğrafi alanlar üzerinde uygulandığında değişim aralığı yerine geometrik dağılan nesnelerin dış çerçevesi (bounding box) saklanır. Bu sebeple BRIN indeksinin boyutu çok küçüktür.
 
