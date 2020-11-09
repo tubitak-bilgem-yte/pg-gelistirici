@@ -98,11 +98,23 @@ entries:
       url: /mydoc_pl_pgsql.html
       output: web, pdf
 
+    - title: Fonksiyonlar ve Prosedürler
+      url: /mydoc_fonksiyon_prosedurler.html
+      output: web, pdf
+
+    - title: Tetikleyiciler (Triggers)
+      url: /mydoc_triggers.html
+      output: web, pdf
+
   - title: Veri Aktarımı ve Eklentiler
     url: /mydoc_sidebar_navigation.html
     output: web, pdf
     folderitems:
 
-#    - title: PostgreSQL MVCC ve VACUUM
-#      url: /mydoc_sidebar_navigation.html
-#      output: web, pdf
+    - title: Eklentiler (FDW ve Temel Eklentiler)
+      url: /mydoc_eklentiler.html
+      output: web, pdf
+
+    - title: pgLoader
+      url: /mydoc_pgloader.html
+      output: web, pdf
