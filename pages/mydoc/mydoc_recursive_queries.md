@@ -143,7 +143,7 @@ SELECT * FROM moved_rows;
 
 Burada dikkat edilecek noktalardan birisi WITH ifadesinin, INSERT’ün altındaki alt SELECT cümleciğine değil doğrudan INSERT’e eklenmesidir. Çünkü, veri düzenleyen ifadelerin WITH cümleciğinde sadece WITH’in en üst kademesine eklenmesine izin verilir. Fakat normal WITH görünürlük kuralları geçerli olduğundan dolayı WITH cümleciğinin çıktılarına INSERT’ün altında yer alan SELECT ifadesinden erişebilmek de mümkündür.
 
-WITH ile kullanılan veri düzenleme ifadelerinde RETURNING ifadesi de genelde görülür. Bu RETURNING ifadesinin  çıktısıdır, verisi düzenlenmiş hedef tablonun değil. Eğer bu tür veri düzenleyen bir WITH ifadesinde RETURNING yer almazsa geçici bir tablo oluşturamayacağı için sorgunun kalanına referanslanamayacak ve istenen iş gerçekleşemeyecektir. Tabi bu ifade her halükarda işletilecektir. Örneğin aşağıda buna verilen örnek çok da işlevsel değildir.
+WITH ile kullanılan veri düzenleme ifadelerinde RETURNING ifadesi de genelde görülür. Bu RETURNING ifadesinin çıktısıdır, verisi düzenlenmiş hedef tablonun değil. Eğer bu tür veri düzenleyen bir WITH ifadesinde RETURNING yer almazsa geçici bir tablo oluşturamayacağı için sorgunun kalanına referanslanamayacak ve istenen iş gerçekleşemeyecektir. Tabi bu ifade her halükarda işletilecektir. Örneğin aşağıda buna verilen örnek çok da işlevsel değildir.
 
 ```sql
 WITH t AS (
@@ -152,6 +152,6 @@ WITH t AS (
 DELETE FROM bar;
 ```
 
-- Bu örnek hem foo hem de bar tablolarının tüm satırlarını siler. Fakat kullanıcıya sadece bar tablosunda silinen satırların sayısına dair geri dönüş yapılır.
+- Bu örnek hem *foo* hem de *bar* tablolarının tüm satırlarını siler. Fakat kullanıcıya sadece bar tablosunda silinen satırların sayısına dair geri dönüş yapılır.
 
 {% include links.html %}

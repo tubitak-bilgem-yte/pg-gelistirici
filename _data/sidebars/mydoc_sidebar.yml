@@ -85,10 +85,18 @@ entries:
       url: /mydoc_recursive_queries.html
       output: web, pdf
 
+    - title: JSON
+      url: /mydoc_json.html
+      output: web, pdf
+
   - title: Veritabanı Programlama
     url: /mydoc_sidebar_navigation.html
     output: web, pdf
     folderitems:
+
+    - title: PL/pgSQL - Prosedürel SQL Dili
+      url: /mydoc_pl_pgsql.html
+      output: web, pdf
 
   - title: Veri Aktarımı ve Eklentiler
     url: /mydoc_sidebar_navigation.html
