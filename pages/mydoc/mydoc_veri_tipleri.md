@@ -299,7 +299,7 @@ SELECT * FROM person WHERE current_mood = 'happy';
 (1 row)
 ```
 
-### Netwoek Adres Tipleri
+### Network Adres Tipleri
 
 PostgreSQL farklı tipte network adreslerinin (IPv4, IPv6, MAC) saklanabilmesini sağlayan veri tiplerinin oluşturulmasına da izin vermektedir. Metin tipinde veriler yerine bunların kullanılması sayesinde hata kontrolü yapmak veya bu veriler üzerinde çalışan bazı özel operatör ve fonksiyonları kullanabilmek mümkün hale gelmektedir.
 
