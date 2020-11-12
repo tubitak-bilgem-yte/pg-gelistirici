@@ -12,7 +12,7 @@ site_title: PostgreSQL Veritabanı Geliştirici Dokümantasyonu
 company_name: TÜBİTAK BİLGEM YTE
 # this appears in the footer
 
-github_editme_path: berkanyiildirim/pg-gelistirici/blob/gh-pages/
+github_editme_path: tubitak-bilgem-yte/pg-gelistirici/blob/gh-pages/
 # if you're using Github, provide the basepath to the branch you've created for reviews, following the sample here. if not, leave this value blank.
 
 # gitlab_editme_path: tomjoht/documentation-theme-jekyll/blob/gh-pages/
@@ -35,7 +35,7 @@ exclude:
 
 feedback_subject_line: PostgreSQL Veritabanı Geliştirici Dokümantasyonu
 
-feedback_email: berkan.yiildirim@gmail.com
+feedback_email: ibrahim.kokdemir@tubitak.gov.tr
 # used as a contact email for the Feedback link in the top navigation bar
 
 # feedback_disable: true
