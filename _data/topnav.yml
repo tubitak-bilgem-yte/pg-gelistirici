@@ -6,7 +6,7 @@ topnav:
     - title: Blog
       url: /news
     - title: GitHub
-      external_url: https://github.com/berkanyiildirim/pg-gelistirici/
+      external_url: https://github.com/tubitak-bilgem-yte/pg-gelistirici/
 
 #Topnav dropdowns
 #topnav_dropdowns:
