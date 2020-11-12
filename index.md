@@ -128,7 +128,7 @@ PostgreSQL kurumsal veritabanı yönetimi sistemlerinde olmazsa olmaz başlıca 
 
 ### Coğrafi Veri Desteği
 
-{% include image.html file="postgres_giris_postgis.png" url="/images/postgres_giris_postgis.png"%}
+{% include image.html file="postgres_giris_postgis.png" url="/pg-gelistirici/images/postgres_giris_postgis.png"%}
 
 - Dünyanın en gelişmiş açık kaynak kodlu geo-aware veritabanıdır.
 - PostgreSQL ile coğrafi verilerinizi yönetebilirsiniz. PostGIS eklentisi ile PostgreSQL mekânsal veri yapılarını destekleyecek veritabanı haline gelir.
