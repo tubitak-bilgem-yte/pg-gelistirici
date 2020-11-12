@@ -3,7 +3,7 @@
 entries:
 - title: sidebar
   product: PostgreSQL Geliştirici Dokümantasyonu
-  version: Beta
+  version: 1.0
   folders:
 
   - title:
@@ -19,50 +19,107 @@ entries:
       output: pdf
       type: frontmatter
 
-  - title: Giriş
+  - title: Genel Bakış
     output: web, pdf
     folderitems:
-    
+
     - title: Giriş
       url: /index.html
       output: web, pdf
-      type: homepage
+      type: 
+        -
 
-  - title: Veri Tipleri
+  - title: PostgreSQL'e Özgü Veri ve Operatör Tipleri
     output: web, pdf
     folderitems:
 
-    - title: PostgreSQL'e Özgü Veri ve Operatör Tipleri
-      url: /mydoc_veri_operator_tipleri.html
+    - title: Veri Tipleri
+      url: /mydoc_veri_tipleri.html
       output: web, pdf
 
-  - title: Fonksiyon ve Operatör Tipleri
-    output: web, pdf
-    folderitems:
-
+    - title: Fonksiyon ve Operatör Tipleri
+      url: /mydoc_operator_tipleri.html
+      output: web, pdf
 
   - title: Sorguların Yapısı ve Davranışları
     output: web, pdf
     folderitems:
 
+    - title: Sorgular ve Yazım Kuralları
+      url: /mydoc_sorgu_yazım_kuralları.html
+      output: web, pdf
+
+    - title: Sorgu Tipleri
+      url: /mydoc_sorgu_tipleri.html
+      output: web, pdf
 
   - title: Öne Çıkan Özellikler
     url: /mydoc_sidebar_navigation.html
     output: web, pdf
     folderitems:
-    
+
+    - title: PostgreSQL Transaction Yönetimi
+      url: /mydoc_transaction_yonetimi.html
+      output: web, pdf
+
+    - title: Yabancı Anahtar ve Miras
+      url: /mydoc_foreignKey_inheritance.html
+      output: web, pdf
+
+    - title: İndex Türleri ve Kullanımları
+      url: /mydoc_index_turleri.html
+      output: web, pdf
+
+    - title: View / Materialized View
+      url: /mydoc_view_materializedview.html
+      output: web, pdf
+
+    - title: Tablo Bölümlendirme (Partitioning)
+      url: /mydoc_tablo_bolumlendirme.html
+      output: web, pdf
+
+    - title: Özetleme (Aggregate) ve Bölümleme (Window) Fonksiyonları
+      url: /mydoc_aggregate_window_fonksiyonları.html
+      output: web, pdf
+
+    - title: Küme, Küp ve Katlama Tipi Yapılar (GROUPING SETS, CUBE, ROLLUP)
+      url: /mydoc_groupingSets_cube_rollup.html
+      output: web, pdf
+
+    - title: Özyinelemi Sorgular (Recursive Queries)
+      url: /mydoc_recursive_queries.html
+      output: web, pdf
+
+    - title: JSON
+      url: /mydoc_json.html
+      output: web, pdf
 
   - title: Veritabanı Programlama
     url: /mydoc_sidebar_navigation.html
     output: web, pdf
     folderitems:
-    
+
+    - title: PL/pgSQL - Prosedürel SQL Dili
+      url: /mydoc_pl_pgsql.html
+      output: web, pdf
+
+    - title: Fonksiyonlar ve Prosedürler
+      url: /mydoc_fonksiyon_prosedurler.html
+      output: web, pdf
+
+    - title: Tetikleyiciler (Triggers)
+      url: /mydoc_triggers.html
+      output: web, pdf
 
   - title: Veri Aktarımı ve Eklentiler
     url: /mydoc_sidebar_navigation.html
     output: web, pdf
     folderitems:
-    
-#    - title: PostgreSQL MVCC ve VACUUM
-#      url: /mydoc_sidebar_navigation.html
-#      output: web, pdf
+
+    - title: Eklentiler (FDW ve Temel Eklentiler)
+      url: /mydoc_eklentiler.html
+      output: web, pdf
+
+    - title: pgLoader
+      url: /mydoc_pgloader.html
+      output: web, pdf

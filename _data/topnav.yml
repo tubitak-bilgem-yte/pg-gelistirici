@@ -3,7 +3,7 @@
 topnav:
 - title: Topnav
   items:
-    - title: News
+    - title: Blog
       url: /news
     - title: GitHub
       external_url: https://github.com/berkanyiildirim/pg-gelistirici/
