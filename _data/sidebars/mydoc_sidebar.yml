@@ -19,14 +19,15 @@ entries:
       output: pdf
       type: frontmatter
 
-  - title: Giriş
+  - title: Genel Bakış
     output: web, pdf
     folderitems:
 
     - title: Giriş
       url: /index.html
       output: web, pdf
-      type: homepage
+      type: 
+        -
 
   - title: PostgreSQL'e Özgü Veri ve Operatör Tipleri
     output: web, pdf
@@ -71,6 +72,10 @@ entries:
 
     - title: View / Materialized View
       url: /mydoc_view_materializedview.html
+      output: web, pdf
+
+    - title: Tablo Bölümlendirme (Partitioning)
+      url: /mydoc_tablo_bolumlendirme.html
       output: web, pdf
 
     - title: Özetleme (Aggregate) ve Bölümleme (Window) Fonksiyonları
