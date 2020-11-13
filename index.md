@@ -7,7 +7,7 @@ permalink: index.html
 summary: PostgreSQL Veritabanı Geliştirici Dökümantasyonu
 ---
 
-![postgres giriş](/images/postgres_giris.png)
+{% include image.html file="postgres_giris.png" url="/pg-gelistirici/images/postgres_giris.png" alt="postgres giriş"%}
 
 ## PostgreSQL (“Post-Gres-Q-L” okunur.)
 
@@ -29,7 +29,7 @@ PostgreSQL’in çok aktif ve güçlü geliştirici komünitesi vardır. Her yı
 
 ## PostgreSQL Tarihçesi
 
-![postgresql_tarihce](/images/postgresql_tarihce.png)
+{% include image.html file="postgresql_tarihce.png" url="/pg-gelistirici/images/postgresql_tarihce.png" alt="postgresql tarihçe"%}
 
 - **1977-1985 Ingres**: PostgreSQL’in, 1977 yılında başlayan 20 yılı akademik, son 20 yılı endüstride geçen 40 yıllık bir geçmişi vardır. Berkeley Kaliforniya Üniversitesinde Micheal Stonebraker, Ingres adıyla ilişkisel modeli baz alan bir araştırma projesi olarak ilişkisel veritabanı yönetim sistemini geliştirdi.
 - **1986-1994 Postgres**: 1985’den itibaren Micheal Stonebraker, kompleks veri yapılarını ve nesne ilişkisel modeli destekleyen postgres veritabanı yönetim sistemini geliştirdi.
@@ -60,7 +60,7 @@ PostgreSQL’in çok aktif ve güçlü geliştirici komünitesi vardır. Her yı
 
 PostgreSQL kurumsal veritabanı yönetimi sistemlerinde olmazsa olmaz başlıca özellikler olan standartlara uyumluluk, yüksek erişilebilirlik, yüksek hacimli veri ve işlemler karşısında sağlamlık ve güvenilirlik, yüksek performans, güvenlik, genişleyebilirlik, kolay yönetim ve bakım, hızlı sorun giderme, planlı bakımlarda düşük kesinti süreleri gibi özelliklere sahiptir. Her yıl çıkan majör sürümleri ile birçok gelişmiş yeni ve yenilikçi özelliği de bünyesine katmaya devam etmektedir.
 
-![postgres_ozellikleri](/images/postgres_ozellikleri.png)
+{% include image.html file="postgres_ozellikleri.png" url="/pg-gelistirici/images/postgres_ozellikleri.png" alt="postgresql özellikleri"%}
 
 ### Yüksek Erişilebilirlik ve Kümeleme
 
@@ -84,7 +84,7 @@ PostgreSQL kurumsal veritabanı yönetimi sistemlerinde olmazsa olmaz başlıca 
 - PostgreSQL’in günümüzün devasa hızda veri büyümesi ve büyüklüğü yönetim ihtiyaçlarına karşı PostgreSQL Natif Bölümleme (Native Partitioning) özelliği vardır.
 - Veriler, farklı kısıtlamalara göre bölümlere ayrılabilir ve toplu sonuçlar için sorgulanabilir. İsteğe bağlı bölüm (On-demand  partition), daha önce yapılandırılmış olan tüm kuralları değiştirmeden, tek bir sorgu çalıştırarak kolayca eklenebilir.
 
-![postgres_giris_olceklenebilirlik](/images/postgres_giris_olceklenebilirlik.png)
+{% include image.html file="postgres_giris_olceklenebilirlik.png" url="/pg-gelistirici/images/postgres_giris_olceklenebilirlik.png" alt="postgres ölçeklenebilirlik"%}
 
 ### Güvenlik
 
@@ -96,7 +96,7 @@ PostgreSQL kurumsal veritabanı yönetimi sistemlerinde olmazsa olmaz başlıca 
 - PostgreSQL istemci sunucu iletişiminde SSL kullanır.
 - PostgreSQL’in en katı güvenlik standartlarına (PCI Data Security Standard) tam uyumluluk için altyapısı vardır.
 
-![postgres_giris_guvenlik](/images/postgres_giris_guvenlik.png)
+{% include image.html file="postgres_giris_guvenlik.png" url="/pg-gelistirici/images/postgres_giris_guvenlik.png" alt="postgres_giris_guvenlik"%}
 
 ### Gelişmiş Özellikler
 
@@ -148,7 +148,7 @@ Yerleşik 3D ve topoloji desteği vardır.
 - PL/pgSQL, zengin kontrol yapıları ve PostgreSQL tetikleyici, dizin, kural, kullanıcı tanımlı veri türü ve operatör nesneleriyle tam entegrasyona sahip eksiksiz bir prosedürel dilidir.
 - PL/pgSQL’den başka aşağıdaki diller ile geliştirme yapabilirsiniz.
 
-{% include image.html file="postgres_giris_gelistirici_ozellik.png" url="/images/postgres_giris_gelistirici_ozellik.png"%}
+{% include image.html file="postgres_giris_gelistirici_ozellik.png" url="/pg-gelistirici/images/postgres_giris_gelistirici_ozellik.png"%}
 
 - PostgreSQL, yazılım geliştirme çerçevelerinden nesne ilişkisel eşleme (ORM) kütüphaneleri (Hibernate gibi) ile birlikte uyumlu çalışır.
 - PostgreSQL’in çok zengin veri tipleri vardır. PostgreSQL, mevcut veritabanına uzantıları yüklemek için `CREATE EXTENSION` komutunu sunar.
