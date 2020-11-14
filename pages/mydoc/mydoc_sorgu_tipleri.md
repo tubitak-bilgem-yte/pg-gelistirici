@@ -403,9 +403,6 @@ SELECT *
     WHERE proname LIKE 'bytea%';
 ```
 
-```sql
-```
-
 Burada başka bir veritabanına bağlantı kurmayı sağlayan ``dblink( )`` ifadesi bir fonksiyondur.
 
 Tablo ifadesi içerisinde önemli yeri olan bir diğer cümlecik ``WHERE`` cümleciğidir. WHERE kendisinden sonra gelen filtreleme ifadesine göre seçili tablo kolonları içinde filtreleme yapar. WHERE kullanarak tablodaki satırları belli kriterlere göre süzebiliriz.

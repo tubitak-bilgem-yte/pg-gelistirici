@@ -17,7 +17,7 @@ PostgreSQL, çok sayıda fonksiyon ve operatör sunmaktadır. Kullanıcılar, bu
 
 PostgreSQL’de kullanılan mantıksal operatörler ``AND``, ``OR`` ve ``NOT`` olarak listelenebilir. Örneğin TRUE, FALSE veya NULL değerler alabilecek a ve b gibi iki boolean tipinde değişkenin aldığı değerlere göre AND, OR ve NOT mantıksal operatörlerinin sonuçlar üzerindeki etkileri aşağıdaki tablolarda görülmektedir.
 
-![mantıksal operatörler](/images/veri_operator_tipleri_sekil9.png)
+{% include image.html file="veri_operator_tipleri_sekil10.png" url="/pg-gelistirici/images/veri_operator_tipleri_sekil10.png" alt="mantıksal operatörler"%}
 
 AND ve OR operatörlerinin solundaki ve sağındaki değişkenlerin yer değiştirmesi, sonucu değiştirmez. Fakat bu operatörlerin bir yanında alt ifadelerin olması farklı sonuçlara sebep olabilir.
 
