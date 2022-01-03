@@ -66,7 +66,7 @@ num_nonnulls (1, NULL, 2) ⇒ 2
 num_nulls (1, NULL, 2) ⇒ 1
 ```
 
-### Matematiksel Fonsksiyon ve Operatörler
+### Matematiksel Fonksiyonlar ve Operatörler
 
 Çoğu PostgreSQL tipi için matematiksel operatörler sunulmuştur. Bu operatörler ve örnekleri aşağıdaki tabloda verilmiştir. En alttaki bitwise operatörler bit ve bit varying tipindeki verilerle integral veri tiplerinde geçerlidir.
 
