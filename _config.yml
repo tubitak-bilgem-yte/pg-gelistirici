@@ -1,117 +1,133 @@
-repository:  tubitak-bilgem-yte/pg-gelistici/gh-pages
+# Welcome to Jekyll!
+#
+# This config file is meant for settings that affect your whole site, values
+# which you are expected to set up once and rarely edit after that. If you find
+# yourself editing these this file very often, consider using Jekyll's data files
+# feature for the data you need to update frequently.
+#
+# For technical reasons, this file is *NOT* reloaded automatically when you use
+# 'jekyll serve'. If you change this file, please restart the server process.
 
-output: web
-# this property is useful for conditional filtering of content that is separate from the PDF.
+# Site settings
+# These are used to personalize your new site. If you look in the HTML files,
+# you will see them accessed via {{ site.title }}, {{ site.github_repo }}, and so on.
+# You can create any custom variable you would like, and they will be accessible
+# in the templates via {{ site.myvariable }}.
+title: PostgreSQL Veritabanı Geliştirici Dokümantasyonu 
+description: PostgreSQL Veritabanı Geliştirici Dokümantasyonu
+baseurl: "/pg-gelistirici" # the subpath of your site, e.g. /blog
+#url: "https://pg-tr.github.io" # the base hostname & protocol for your site, e.g. http://example.com
+toctitle: "İçindekiler"
+company_name: "TÜBİTAK BİLGEM YTE"
 
-topnav_title: PostgreSQL Veritabanı Geliştirici Dokümantasyonu 
-# this appears on the top navigation bar next to the home button
-
-site_title: PostgreSQL Veritabanı Geliştirici Dokümantasyonu 
-# this appears in the html browser tab for the site title (seen mostly by search engines, not users)
-
-company_name: TÜBİTAK BİLGEM YTE
-# this appears in the footer
-
-github_editme_path: tubitak-bilgem-yte/pg-gelistirici/blob/gh-pages/
-# if you're using Github, provide the basepath to the branch you've created for reviews, following the sample here. if not, leave this value blank.
-
-# gitlab_editme_path: tomjoht/documentation-theme-jekyll/blob/gh-pages/
-# if you're using GitLab, provide the basepath to the branch you've created for reviews, following the sample here. if not, leave this value blank.
-
-# google_analytics: UA-66296557-1
-# if you have google-analytics ID, put it in. if not, edit this value to blank.
-
-host: 127.0.0.1
-# the preview server used. Leave as is.
-
-port: 4000
-# the port where the preview is rendered. You can leave this as is unless you have other Jekyll builds using this same port that might cause conflicts. in that case, use another port such as 4006.
-
-exclude:
-  - .idea/
-  - .gitignore
-  - vendor
-# these are the files and directories that jekyll will exclude from the build
-
-feedback_subject_line: PostgreSQL Veritabanı Geliştirici Dokümantasyonu
-
-feedback_email: ibrahim.kokdemir@tubitak.gov.tr
-# used as a contact email for the Feedback link in the top navigation bar
-
-# feedback_disable: true
-# if you uncomment the previous line, the Feedback link gets removed
-
-# feedback_text: "Need help?"
-# if you uncomment the previous line, it changes the Feedback text
-
-# feedback_link: "http://helpy.io/"
-# if you uncomment the previous line, it changes where the feedback link points to
+#theme: just-the-docs
+remote_theme: pmarsceill/just-the-docs
 
 highlighter: rouge
-# library used for syntax highlighting
+syntax_highlighter_style: colorful
 
-markdown: kramdown
+permalink: pretty
+exclude: [
+  "node_modules/",
+  "*.gemspec
+  ", "*.gem", "Gemfile", "Gemfile.lock", "package.json", "package-lock.json",  
+  "script/", "LICENSE.txt", "lib/", "bin/", "README.md", "Rakefile", "docs/tests/"
+]
+
+# Regression tests
+# By default, the pages in /docs/tests are excluded when the ste is built.
+# To include them, comment-out the relevant line above.
+# Uncommenting the following line doesn't work - see https://github.com/jekyll/jekyll/issues/4791
+# include: ["docs/tests/"]
+
+# Set a path/url to a logo that will be displayed instead of the title
+logo: "/images/pg.png"
+
+# Enable or disable the site search
+# Supports true (default) or false
+search_enabled: true
+search:
+  # Split pages into sections that can be searched individually
+  # Supports 1 - 6, default: 2
+  heading_level: 2
+  # Maximum amount of previews per search result
+  # Default: 3
+  previews: 2
+  # Maximum amount of words to display before a matched word in the preview
+  # Default: 5
+  preview_words_before: 3
+  # Maximum amount of words to display after a matched word in the preview
+  # Default: 10
+  preview_words_after: 3
+  # Set the search token separator
+  # Default: /[\s\-/]+/
+  # Example: enable support for hyphenated search words
+  tokenizer_separator: /[\s/]+/
+  # Display the relative url in search results
+  # Supports true (default) or false
+  rel_url: true
+  # Enable or disable the search button that appears in the bottom right corner of every page
+  # Supports true or false (default)
+  button: false
+
+# Enable or disable heading anchors
+heading_anchors: true
+
+# Aux links for the upper right navigation
+aux_links:
+  "GitHub'taki Dokümantasyon":
+    - "//github.com/tubitak-bilgem-yte/pg-gelistirici"
+
+# Makes Aux links open in a new tab. Default is false
+aux_links_new_tab: false
+
+# Sort order for navigation links
+# nav_sort: case_insensitive # default, equivalent to nil
+nav_sort: case_sensitive # Capital letters sorted before lowercase
+
+# Footer content
+# appears at the bottom of every page's main content
+
+# Back to top link
+back_to_top: true
+back_to_top_text: "Başa Dön"
+
+footer_content: ""
+
+# Footer last edited timestamp
+last_edit_timestamp: true # show or hide edit time - page must have `last_modified_date` defined in the frontmatter
+last_edit_time_format: "%b %e %Y at %I:%M %p" # uses ruby's time format: https://ruby-doc.org/stdlib-2.7.0/libdoc/time/rdoc/Time.html
+
+
+
+# Footer "Edit this page on GitHub" link text
+gh_edit_link: true # show or hide edit this page link
+gh_edit_link_text: "GitHub'ta düzenleyin"
+gh_edit_repository: "https://github.com/tubitak-bilgem-yte/pg-yonetici" # the github URL for your repo
+gh_edit_branch: "gh-pages" # the branch that your docs is served from
+# gh_edit_source: docs # the source that your files originate from
+gh_edit_view_mode: "tree" # "tree" or "edit" if you want the user to jump into the editor immediately
+
+# Color scheme currently only supports "dark", "light"/nil (default), or a custom scheme that you define
+color_scheme: nil
+
+plugins:
+  - jekyll-seo-tag
+
 kramdown:
- input: GFM
- auto_ids: true
- hard_wrap: false
- syntax_highlighter: rouge
+  syntax_highlighter_opts:
+    block:
+      line_numbers: false
 
-# filter used to process markdown. note that kramdown differs from github-flavored markdown in some subtle ways
+compress_html:
+  clippings: all
+  comments: all
+  endings: all
+  startings: []
+  blanklines: false
+  profile: false
+  # ignore:
+  #   envs: all
 
-collections:
-  tooltips:
-    output: false
-# collections are declared here. this renders the content in _tooltips and processes it, but doesn't output it as actual files in the output unless you change output to true
-
-defaults:
-  -
-    scope:
-      path: ""
-      type: "pages"
-    values:
-      layout: "page"
-      comments: false
-      # if you don't want to use Commento.io and just hide comments, change true to false wherever you see the comments property
-      search: true
-      sidebar: mydoc_sidebar
-      topnav: topnav
-  -
-    scope:
-      path: ""
-      type: "tooltips"
-    values:
-      layout: "page"
-      search: true
-      tooltip: true
-
-  -
-    scope:
-      path: ""
-      type: "posts"
-    values:
-      layout: "post"
-      comments: false
-      # if you don't want to use Commento.io and just hide comments, change true to false wherever you see the comments property
-      search: true
-      sidebar: mydoc_sidebar
-      topnav: topnav
-
-# these are defaults used for the frontmatter for these file types
-
-sidebars:
-- home_sidebar
-- mydoc_sidebar
-- product1_sidebar
-- product2_sidebar
-- other
-
-description: "Intended as a documentation theme based on Jekyll for technical writers documenting software and other technical products, this theme has all the elements you would need to handle multiple products with both multi-level sidebar navigation, tags, and other documentation features."
-# the description is used in the feed.xml file
-
-# needed for sitemap.xml file only
-# url: http://idratherbewriting.com
-# baseurl: /documentation-theme-jekyll
-
-
-github: [metadata]
+include:
+ - docs
