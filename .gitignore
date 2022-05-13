@@ -7,3 +7,5 @@ _pdf
 vendor/
 .bundle/
 .vscode/
+_config_local.yml
+.jekyll-cache/

@@ -1,3 +1,8 @@
+---
+title: "Dokümantasyon Katkı Rehberi"
+permalink: katki_saglayin.html
+---
+
 ## Bu Dokümantasyon Projesine Katkı Dökümantasyonu
 
 ### 1. Projeyi Düzenleme

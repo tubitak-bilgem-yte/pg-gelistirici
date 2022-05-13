@@ -1,0 +1,18 @@
+{% assign parametre = {{include.parametre}} %}
+{% assign infoLabels = site.data.parameter-info.allowed-parameter-info %}
+
+<div class="text-left pt-5">
+{% for label in infoLabels %}
+
+    {% if {{site.data.parameters.[parametre].[label]}} != null %}
+
+     {% if {{label}} == "showDefault"%}
+      <span class="label label-{{label}}"> default: {{site.data.parameters.[parametre].[label]}}</span>
+     {% else %}
+     <span class="label label-{{label}}">{{label}}: {{site.data.parameters.[parametre].[label]}}</span>
+     {% endif %}
+
+    {% endif %}
+{% endfor %}
+</div>
+
