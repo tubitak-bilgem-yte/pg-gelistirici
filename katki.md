@@ -1,9 +1,14 @@
 ---
+layout: default
 title: "Dokümantasyon Katkı Rehberi"
 permalink: katki_saglayin.html
 ---
 
-## Bu Dokümantasyon Projesine Katkı Dökümantasyonu
+## Bu Dokümantasyon Projesine Katkı Rehberi
+
+![Tubitak Bilgem YTE](images/company_logo.png)
+
+TÜBİTAK BİLGEM YTE olarak ülkemizde açık kaynak çalışmaları kapsamında uzun süredir hem kritik sistemlerde kullandığımız hem de ülkemizde yaygınlaşması için faaliyetlerde bulunduğumuz Açık Kaynak PostgreSQL Veritabanı Yönetim Sistemi için Türkçe dokümantasyonları açık kaynak olarak yayınlamaya başlıyoruz. PostgreSQL Yönetici Dokümantasyonu, hem yazılım geliştiriciler için, hem de üniversitelerdeki öğrenciler için planlı bir kaynak olması niyetiyle hazırlanmıştır. Açık Kaynak Topluluğundan beklentimiz, bu projemize katılmaları, bu dokümantasyonu geliştirmeleri, kullanmaları ve yaymalarıdır.
 
 ### 1. Projeyi Düzenleme
 
@@ -107,22 +112,22 @@ Output kısmına ise web, pdf yazılır ve oluşturulan metin, dosyanın istenil
 ### 3. Sayfa Düzenleme
 
 1. Sayfa düzenlemek için her sayfanın başında Düzenle butonu bulunmaktadır. Düzenlemek istenilen sayfada bu butona basılır.
-![Düzenle](/images/contribution_images/1.jpg)
+![Düzenle](images/contribution_images/1.jpg)
 
 2. Sayfa açıldıktan sonra sağ üstteki kalem ikonuna basılır.
-![Kalem](/images/contribution_images/2.jpg)
+![Kalem](images/contribution_images/2.jpg)
 
 3. Metin editörü açıldıktan sonra istenilen değişiklikler yapılır. Bu değişikliklerin önizlemesi üstte bulunan *Preview Changes* kısmında görülebilir.
-![Preview Changes](/images/contribution_images/3.jpg)
+![Preview Changes](images/contribution_images/3.jpg)
 
 4. Değişiklikler yapıldıktan sonra açıklayıcı bir mesaj yazılır ve *Propose Changes* butonuna basılır.
-![Propose Changes](/images/contribution_images/4.jpg)
+![Propose Changes](images/contribution_images/4.jpg)
 
 5. Açılan sayfada *Create Pull Request" butonuna basılır.
-![Create Pull Request](/images/contribution_images/5.jpg)
+![Create Pull Request](images/contribution_images/5.jpg)
 
 6. Açılan pull request sayfasında *Create Pull Request" butonuna basılır ve değişiklikler proje yöneticisine gönderilir.
-![Send Request](/images/contribution_images/6.jpg)
+![Send Request](images/contribution_images/6.jpg)
 
 7. Yapılan değişiklikler **proje yöneticisi** tarafından duruma göre kabul edilir veya geri çevrilir.
 
